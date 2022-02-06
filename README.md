@@ -19,7 +19,7 @@
 <img src="https://img.shields.io/badge/JPA-339933?style=flat-square&logo=JPA&logoColor=white"/></a>
   </div>
   <div>
-<img src="https://img.shields.io/badge/AWS-FFB71B?style=flat-square&logo=Amazon AWS&logoColor=white"/>
+<img src="https://img.shields.io/badge/AWS-FFB71B?style=flat-square&logo=AWS&logoColor=white"/>
   <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=GitHub&logoColor=white"/>
 <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat-square&logo=MySQL&logoColor=white"/>
 <img src="https://img.shields.io/badge/Nginx-009639?logo=Nginx">
