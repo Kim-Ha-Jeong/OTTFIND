@@ -26,7 +26,6 @@ class UserServiceTest {
 
         Integer id = userService.join(user);
 
-        System.out.println(id);
         User findUser = userRepository.findById(id).get();
         assertEquals(user.getUsername(), findUser.getUsername());
     }
