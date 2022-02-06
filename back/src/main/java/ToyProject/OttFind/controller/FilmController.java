@@ -21,7 +21,11 @@ public class FilmController {
 
     @RequestMapping(value = "/film", params = "title")
     public List<Film> findByTitle(@RequestParam String title){
-        System.out.println(title);
-        return filmService.findFilmByTitle(title);
+       return filmService.findFilmByTitle(title);
+    }
+
+    @RequestMapping(value = "/film", params = "genre")
+    public List<Film> findByGenre(@RequestParam String genre){
+        return filmService.findFilmByGenre(genre);
     }
 }

@@ -2,14 +2,15 @@ package ToyProject.OttFind.service;
 
 import ToyProject.OttFind.domain.Film;
 import ToyProject.OttFind.domain.Genre;
-import ToyProject.OttFind.repository.FilmRepository;
+import ToyProject.OttFind.repository.FilmInterface;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.transaction.annotation.Transactional;
+
+import javax.transaction.Transactional;
+import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 @Transactional
@@ -19,64 +20,27 @@ class FilmServiceTest {
     FilmService filmService;
 
     @Autowired
-    FilmRepository filmRepository;
+    FilmInterface filmRepository;
 
-    @Test
-    void 단순저장() {
-        Film film = new Film();
-        Genre genre = new Genre();
-        genre.setName("호러");
+    public void setUp() throws Exception{
+        Genre genre = Genre.builder().name("액션").id(1).build();
 
-        film.setType("영화");
-        film.setDirector("spring");
-        film.setYear(2021);
-        film.setTitle("바보");
-        film.setGenre(genre);
-        film.setTime(120);
-        film.setSeason(-1);
-        film.setPoster_url("정보없음");
-
-        System.out.println(film.getTitle()+" "+film.getDirector());
-
-        Integer id = filmService.saveFilm(film);
-
-        Film findFilm = filmRepository.findById(id).get();
-        assertEquals(id, findFilm.getId());
+        Film film = Film.builder().title("바보").poster_url("정보없음").season(-1).time(109).country("미국").type("영화").director("spring").genre(genre).year(2021).build();
+        filmService.saveFilm(film);
     }
 
     @Test
-    void 중복저장() {
-        Film film1 = new Film();
-        Genre genre = new Genre();
-        genre.setName("호러");
-
-        film1.setType("영화");
-        film1.setDirector("spring");
-        film1.setYear(2021);
-        film1.setTitle("바보");
-        film1.setGenre(genre);
-        film1.setTime(120);
-
-        Film film2 = new Film();
-
-        film2.setType("영화");
-        film2.setDirector("spring");
-        film2.setYear(2021);
-        film2.setTitle("바보");
-        film2.setGenre(genre);
-        film2.setTime(120);
-
-        filmService.saveFilm(film1);
-        IllegalStateException e = assertThrows(IllegalStateException.class, ()-> filmService.saveFilm(film2));
-        assertThat(e.getMessage()).isEqualTo("이미 존재하는 영화/드라마입니다");
-
+    void 저장_잘되는지_확인() throws Exception {
+        setUp();
+        List<Film> film = filmService.findFilmByTitle("바보");
+        assertThat(film.size()).isGreaterThan(0);
     }
 
     @Test
-    void getAllFilms() {
+    void 이름으로_조회(){
+        List<Film> result = filmService.findFilmByTitle("모가디슈");
+        assertThat(result.size()).isGreaterThan(0);
+        assertThat(result.get(0).getTitle()).isEqualTo("모가디슈");
     }
 
-    @Test
-    void findFilmByTitle() {
-    }
 }

@@ -1,9 +1,6 @@
 package ToyProject.OttFind.config;
 
-import ToyProject.OttFind.repository.FilmRepository;
-import ToyProject.OttFind.repository.JpaFilmRepository;
-import ToyProject.OttFind.repository.JpaUserRepository;
-import ToyProject.OttFind.repository.UserRepository;
+import ToyProject.OttFind.repository.*;
 import ToyProject.OttFind.service.FilmService;
 import ToyProject.OttFind.service.UserService;
 import org.springframework.context.annotation.Bean;
@@ -28,8 +25,8 @@ public class SpringConfig {
     }
 
     @Bean
-    public UserRepository userRepository(){
-        return new JpaUserRepository(em);
+    public UserInterface userRepository(){
+        return new UserRepository(em);
     }
 
     @Bean
@@ -38,7 +35,8 @@ public class SpringConfig {
     }
 
     @Bean
-    public FilmRepository filmRepository(){
-        return new JpaFilmRepository(em);
+    public FilmInterface filmRepository(){
+        return new FilmRepository(em);
     }
+
 }

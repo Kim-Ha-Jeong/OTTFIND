@@ -1,17 +1,16 @@
 package ToyProject.OttFind.service;
 
 import ToyProject.OttFind.domain.Film;
-import ToyProject.OttFind.repository.FilmRepository;
+import ToyProject.OttFind.repository.FilmInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 public class FilmService {
     @Autowired
-    private final FilmRepository filmRepository;
+    private final FilmInterface filmRepository;
 
     public void validateDuplicateFilm(Film film){
         List<Film> result = filmRepository.findByTitle(film.getTitle());
@@ -25,12 +24,11 @@ public class FilmService {
         }
     }
 
-    public FilmService(FilmRepository filmRepository){
+    public FilmService(FilmInterface filmRepository){
         this.filmRepository = filmRepository;
     }
 
     public Integer saveFilm(Film film){
-        System.out.println(film.getTitle()+" "+film.getDirector());
         validateDuplicateFilm(film);
         filmRepository.save(film);
         return film.getId();
@@ -42,5 +40,9 @@ public class FilmService {
 
     public List<Film> findFilmByTitle(String title){
         return filmRepository.findByTitle(title);
+    }
+
+    public List<Film> findFilmByGenre(String genreName){
+        return filmRepository.findByGenre(genreName);
     }
 }

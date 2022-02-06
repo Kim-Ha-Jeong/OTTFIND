@@ -1,7 +1,7 @@
 package ToyProject.OttFind.service;
 
 import ToyProject.OttFind.domain.User;
-import ToyProject.OttFind.repository.UserRepository;
+import ToyProject.OttFind.repository.UserInterface;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,9 +11,9 @@ import java.util.Optional;
 @Transactional
 public class UserService {
     @Autowired
-    private final UserRepository userRepository;
+    private final UserInterface userRepository;
 
-    public UserService(UserRepository userRepository){
+    public UserService(UserInterface userRepository){
         this.userRepository = userRepository;
     }
 

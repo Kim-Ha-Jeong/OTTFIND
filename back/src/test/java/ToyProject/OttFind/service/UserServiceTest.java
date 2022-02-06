@@ -1,7 +1,7 @@
 package ToyProject.OttFind.service;
 
 import ToyProject.OttFind.domain.User;
-import ToyProject.OttFind.repository.UserRepository;
+import ToyProject.OttFind.repository.UserInterface;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,7 +16,7 @@ class UserServiceTest {
     @Autowired
     UserService userService;
     @Autowired
-    UserRepository userRepository;
+    UserInterface userRepository;
 
     @Test
     void 회원가입() throws Exception{
