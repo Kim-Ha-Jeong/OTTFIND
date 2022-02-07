@@ -2,6 +2,7 @@ package ToyProject.OttFind.config;
 
 import ToyProject.OttFind.repository.*;
 import ToyProject.OttFind.service.FilmService;
+import ToyProject.OttFind.service.OttService;
 import ToyProject.OttFind.service.ReviewService;
 import ToyProject.OttFind.service.UserService;
 import org.springframework.context.annotation.Bean;
@@ -48,6 +49,16 @@ public class SpringConfig {
     @Bean
     public ReviewInterface reviewRepository(){
         return new ReviewRepository(em);
+    }
+
+    @Bean
+    public OttService ottService(){
+        return new OttService(ottRepository());
+    }
+
+    @Bean
+    public OttInterface ottRepository(){
+        return new OttRepository(em);
     }
 
 }

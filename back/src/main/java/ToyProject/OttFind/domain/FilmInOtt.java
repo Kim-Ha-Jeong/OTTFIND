@@ -1,35 +1,30 @@
 package ToyProject.OttFind.domain;
 
 import lombok.Builder;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Entity(name="review")
+@Entity(name="film_in_ott")
 @NoArgsConstructor
-@Getter
-public class Review {
+public class FilmInOtt {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-
-    @Column(nullable = false, length = 100)
-    private String content;
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinColumn(name = "film_id", referencedColumnName = "id")
     private Film film;
 
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
+    @JoinColumn(name = "ott_id", referencedColumnName = "id")
+    private Ott ott;
 
     @Builder
-    private Review(Integer id, String content, Film film, User user){
+    private FilmInOtt(Integer id, Film film, Ott ott){
         this.id = id;
-        this.content = content;
         this.film = film;
-        this.user = user;
+        this.ott = ott;
     }
+
 }

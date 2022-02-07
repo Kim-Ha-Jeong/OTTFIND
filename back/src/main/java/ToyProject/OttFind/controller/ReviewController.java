@@ -1,6 +1,5 @@
 package ToyProject.OttFind.controller;
 
-import ToyProject.OttFind.domain.Film;
 import ToyProject.OttFind.domain.Review;
 import ToyProject.OttFind.service.ReviewService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +22,12 @@ public class ReviewController {
     }
 
     @RequestMapping(value = "/review", params = "user_id")
-    public List<Review> getReviewByUser(@RequestParam("user_id") String id){
-        return reviewService.getReviewByUser(Integer.parseInt(id));
+    public List<Review> getReviewByUser(@RequestParam("user_id") Integer id){
+        return reviewService.getReviewByUser(id);
     }
 
     @RequestMapping(value = "/review", params = "film_id")
-    public List<Review> getReviewByFilm(@RequestParam("film_id") String id){
-        return reviewService.getReviewByFilm(Integer.parseInt(id));
+    public List<Review> getReviewByFilm(@RequestParam("film_id") Integer id){
+        return reviewService.getReviewByFilm(id);
     }
 }
