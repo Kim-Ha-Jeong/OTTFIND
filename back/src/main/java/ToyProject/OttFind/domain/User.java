@@ -10,7 +10,6 @@ import javax.persistence.*;
 @Entity(name="user")
 @NoArgsConstructor
 @Getter
-@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,7 +22,7 @@ public class User {
     private String password;
 
     @Builder
-    private User(Integer id, String usernmae, String password){
+    private User(Integer id, String username, String password){
         this.id = id;
         this.username = username;
         this.password = password;
