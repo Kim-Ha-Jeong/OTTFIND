@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 public class ReviewService {
@@ -31,5 +32,9 @@ public class ReviewService {
 
     public List<Review> getAllReviews(){
         return reviewRepository.findAll();
+    }
+
+    public Optional<Review> getReviewById(Integer id){
+        return reviewRepository.findById(id);
     }
 }

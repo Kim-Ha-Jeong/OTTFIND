@@ -22,9 +22,7 @@ public class UserController {
 
     @PostMapping("/user")
     public User signUp(@RequestParam String username, @RequestParam String password){
-        User user = new User();
-        user.setUsername(username);
-        user.setPassword(password);
+        User user = User.builder().username(username).password(password).build();
         userService.join(user);
         return user;
     }

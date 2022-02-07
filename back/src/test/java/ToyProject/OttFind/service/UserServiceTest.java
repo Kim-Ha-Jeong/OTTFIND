@@ -20,9 +20,7 @@ class UserServiceTest {
 
     @Test
     void 회원가입() throws Exception{
-        User user = new User();
-        user.setUsername("김하정");
-        user.setPassword("12345");
+        User user = User.builder().username("김하정").password("12345").build();
 
         Integer id = userService.join(user);
 
@@ -33,12 +31,8 @@ class UserServiceTest {
 
     @Test
     void 중복가입() throws Exception{
-        User user1 = new User();
-        user1.setUsername("spring");
-        user1.setPassword("1234");
-        User user2 = new User();
-        user2.setUsername("spring");
-        user2.setPassword("4567");
+        User user1 = User.builder().username("spring").password("1234").build();
+        User user2 = User.builder().username("spring").password("1234").build();
 
         userService.join(user1);
         IllegalStateException e = assertThrows(IllegalStateException.class, ()-> userService.join(user2));
