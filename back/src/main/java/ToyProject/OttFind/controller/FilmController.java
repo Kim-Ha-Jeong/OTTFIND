@@ -1,7 +1,7 @@
 package ToyProject.OttFind.controller;
 
 import ToyProject.OttFind.domain.Film;
-import ToyProject.OttFind.domain.User;
+
 import ToyProject.OttFind.service.FilmService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

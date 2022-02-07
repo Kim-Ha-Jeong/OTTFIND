@@ -1,8 +1,16 @@
 package ToyProject.OttFind.domain;
 
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity(name="user")
+@NoArgsConstructor
+@Getter
+@Setter
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,19 +22,10 @@ public class User {
     @Column(nullable = false, length = 45)
     private String password;
 
-    public String getUsername() {
-        return username;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setUsername(String username) {
+    @Builder
+    private User(Integer id, String usernmae, String password){
+        this.id = id;
         this.username = username;
-    }
-
-    public void setPassword(String password) {
         this.password = password;
     }
 }
