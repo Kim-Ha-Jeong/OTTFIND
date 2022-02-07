@@ -19,9 +19,6 @@ class FilmServiceTest {
     @Autowired
     FilmService filmService;
 
-    @Autowired
-    FilmInterface filmRepository;
-
     public void setUp() throws Exception{
         Genre genre = Genre.builder().name("액션").id(1).build();
 
