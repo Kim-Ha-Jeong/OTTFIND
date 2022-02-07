@@ -10,19 +10,18 @@ import java.util.List;
 @Transactional
 public class OttService {
     @Autowired
-    private final OttInterface OttRepository;
+    private final OttInterface ottRepository;
 
-    public OttService(OttInterface filmInOttRepository) {
-        this.OttRepository = filmInOttRepository;
+    public OttService(OttInterface ottRepository) {
+        this.ottRepository = ottRepository;
     }
 
     public List<Ott> getFilmInOtt(Integer id){
-        System.out.println(id+"no issang service");
-        return OttRepository.findOttByFilm(id);
+        return ottRepository.findOttByFilm(id);
     }
 
     public List<Ott> getAllOtt(){
-        return OttRepository.findAll();
+        return ottRepository.findAll();
     }
 
 }
