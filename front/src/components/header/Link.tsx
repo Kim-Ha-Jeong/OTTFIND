@@ -1,6 +1,8 @@
 import React from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
+import { currentState } from "@ts/state";
 import get from "@ts/get";
 
 interface HighlightProps {
@@ -8,12 +10,13 @@ interface HighlightProps {
 }
 
 const Link = (props: LinkType) => {
+  const [current, setCurrent] = useRecoilState(currentState);
   const changeTypeHandler = async (e: React.MouseEvent<HTMLDivElement>) => {
     const element = e.currentTarget as HTMLDivElement;
-    props.setCurrent(element.id);
+    setCurrent(element.id);
 
     const apiLocation = { pathname: "film" };
-    if (props.id !== "전체") {
+    if (props.id !== "홈") {
       Object.assign(apiLocation, { params: { type: props.id } });
     }
     const result = await get(apiLocation);
@@ -24,7 +27,7 @@ const Link = (props: LinkType) => {
   };
 
   return (
-    <Wrapper onClick={changeTypeHandler} id={props.id} current={props.current}>
+    <Wrapper onClick={changeTypeHandler} id={props.id} current={current}>
       {props.type}
     </Wrapper>
   );
@@ -35,13 +38,11 @@ export default Link;
 type LinkType = {
   id: string;
   type: string;
-  current: string;
-  setCurrent: (current: string) => void;
 };
 
 const Wrapper = styled.div<HighlightProps>`
   border-bottom: ${(props) =>
-    props.current === props.id ? "solid 3px white" : "none"};
+    props.id === props.current ? "3px solid white" : "none"};
   font-size: 23px;
   font-weight: bold;
   opacity: 1;

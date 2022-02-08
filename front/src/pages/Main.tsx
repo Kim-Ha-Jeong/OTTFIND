@@ -1,12 +1,14 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "@src/components/common/Header";
+import Header from "@components/header/Header";
+import FilmRow from "@components/film-row/FilmRow";
 
 const Main = () => {
   return (
     <Wrapper>
       <Header />
+      <FilmRow />
     </Wrapper>
   );
 };

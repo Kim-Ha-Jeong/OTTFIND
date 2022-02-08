@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
+import { RecoilRoot } from "recoil";
 import styled from "styled-components";
 
 import logo from "@images/logo.png";
@@ -9,7 +10,7 @@ import Link from "@components/header/Link";
 import SearchBar from "@components/header/SearchBar";
 
 const Header = () => {
-  const [current, setCurrent] = useState("전체");
+  const linkArr = ["홈", "영화", "드라마"];
   const navigate = useNavigate();
   const moveHome = () => {
     navigate("/");
@@ -23,14 +24,11 @@ const Header = () => {
     <Wrapper>
       <LogoImg src={logo} onClick={moveHome} />
       <LinkWrapper>
-        <Link id="전체" type="홈" current={current} setCurrent={setCurrent} />
-        <Link id="영화" type="영화" current={current} setCurrent={setCurrent} />
-        <Link
-          id="드라마"
-          type="드라마"
-          current={current}
-          setCurrent={setCurrent}
-        />
+        <RecoilRoot>
+          {linkArr.map((ele, idx) => (
+            <Link key={idx} id={ele} type={ele} />
+          ))}
+        </RecoilRoot>
       </LinkWrapper>
       <SearchBar />
       <UserImg src={userIcon} onClick={moveHandler} />
