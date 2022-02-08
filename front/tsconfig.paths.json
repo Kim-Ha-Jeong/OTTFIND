@@ -9,7 +9,7 @@
       "@audios/*": ["./src/audios/*"],
       "@pages/*": ["./src/pages/*"],
       "@context/*": ["./src/context/*"],
-      "@js/*": ["./src/js/*"],
+      "@ts/*": ["./src/ts/*"],
       "@hooks/*": ["./src/hooks/*"]
     }
   }
