@@ -1,6 +1,5 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import { RecoilRoot } from "recoil";
 import styled from "styled-components";
 
 import logo from "@images/logo.png";
@@ -24,18 +23,15 @@ const Header = () => {
     <Wrapper>
       <LogoImg src={logo} onClick={moveHome} />
       <LinkWrapper>
-        <RecoilRoot>
-          {linkArr.map((ele, idx) => (
-            <Link key={idx} id={ele} type={ele} />
-          ))}
-        </RecoilRoot>
+        {linkArr.map((ele, idx) => (
+          <Link key={idx} id={ele} type={ele} />
+        ))}
       </LinkWrapper>
       <SearchBar />
       <UserImg src={userIcon} onClick={moveHandler} />
     </Wrapper>
   );
 };
-export default Header;
 
 const Wrapper = styled.div`
   display: flex;
@@ -64,3 +60,5 @@ const UserImg = styled.img`
     opacity: 0.5;
   }
 `;
+
+export default Header;

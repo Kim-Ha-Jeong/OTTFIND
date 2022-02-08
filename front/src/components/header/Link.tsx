@@ -3,7 +3,6 @@ import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
 import { currentState } from "@ts/state";
-import get from "@ts/get";
 
 interface HighlightProps {
   current: string;
@@ -11,19 +10,10 @@ interface HighlightProps {
 
 const Link = (props: LinkType) => {
   const [current, setCurrent] = useRecoilState(currentState);
+
   const changeTypeHandler = async (e: React.MouseEvent<HTMLDivElement>) => {
     const element = e.currentTarget as HTMLDivElement;
     setCurrent(element.id);
-
-    const apiLocation = { pathname: "film" };
-    if (props.id !== "홈") {
-      Object.assign(apiLocation, { params: { type: props.id } });
-    }
-    const result = await get(apiLocation);
-
-    if (result.status === 200) {
-      console.log(result.data);
-    }
   };
 
   return (
@@ -32,8 +22,6 @@ const Link = (props: LinkType) => {
     </Wrapper>
   );
 };
-
-export default Link;
 
 type LinkType = {
   id: string;
@@ -53,3 +41,5 @@ const Wrapper = styled.div<HighlightProps>`
     opacity: 0.5;
   }
 `;
+
+export default Link;
