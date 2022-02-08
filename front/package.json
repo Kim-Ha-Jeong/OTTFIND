@@ -44,11 +44,14 @@
   "devDependencies": {
     "@craco/craco": "^6.4.3",
     "@types/styled-components": "^5.1.21",
+    "axios": "^0.25.0",
     "craco": "0.0.3",
     "craco-alias": "^3.0.1",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prettier": "^2.5.1",
-    "react-router-dom": "^6.2.1"
+    "react-router-dom": "^6.2.1",
+    "styled-components": "^5.3.3",
+    "styled-reset": "^4.3.4"
   }
 }

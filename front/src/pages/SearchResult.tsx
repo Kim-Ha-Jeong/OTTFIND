@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 import Header from "@src/components/common/Header";
 
-const Main = () => {
+const SearchResult = () => {
   return (
     <Wrapper>
       <Header />
     </Wrapper>
   );
 };
-export default Main;
+export default SearchResult;
 
 const Wrapper = styled.div`
   margin: 1%;
