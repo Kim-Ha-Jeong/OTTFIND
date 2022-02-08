@@ -13,6 +13,13 @@ public class FilmRepository implements FilmInterface {
         this.em = em;
     }
 
+    public List<Film> findFilm(String data, String col){
+        List<Film> result = em.createQuery("select f from film f where f."+col+"=:data", Film.class)
+                .setParameter("data", data)
+                .getResultList();
+        return result;
+    }
+
     @Override
     public List<Film> findByTitle(String title) {
         List<Film> result = em.createQuery("select f from film f where f.title=:title", Film.class)
@@ -23,8 +30,11 @@ public class FilmRepository implements FilmInterface {
     }
 
     @Override
-    public Optional<Film> findByYear(int year) {
-        return Optional.empty();
+    public List<Film> findByYear(Integer year) {
+        List<Film> result = em.createQuery("select f from film f where f.year=:year", Film.class)
+                .setParameter("year", year)
+                .getResultList();
+        return result;
     }
 
     @Override
@@ -37,8 +47,13 @@ public class FilmRepository implements FilmInterface {
     }
 
     @Override
-    public Optional<Film> findByCountry(String country) {
-        return Optional.empty();
+    public List<Film> findByCountry(String country) {
+        return findFilm(country, "country");
+    }
+
+    @Override
+    public List<Film> findByType(String type) {
+        return findFilm(type, "type");
     }
 
     @Override
