@@ -33,8 +33,6 @@ const SearchBar = () => {
   );
 };
 
-export default SearchBar;
-
 const Wrapper = styled.div``;
 
 const Input = styled.input`
@@ -46,3 +44,5 @@ const Input = styled.input`
   font-size: 15px;
   color: black;
 `;
+
+export default SearchBar;

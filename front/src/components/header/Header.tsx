@@ -9,25 +9,29 @@ import Link from "@components/header/Link";
 import SearchBar from "@components/header/SearchBar";
 
 const Header = () => {
+  const linkArr = ["홈", "영화", "드라마"];
   const navigate = useNavigate();
   const moveHome = () => {
     navigate("/");
+  };
+
+  const moveHandler = () => {
+    navigate("/user");
   };
 
   return (
     <Wrapper>
       <LogoImg src={logo} onClick={moveHome} />
       <LinkWrapper>
-        <Link id="" link="홈" />
-        <Link id="movie" link="영화" />
-        <Link id="drama" link="드라마" />
+        {linkArr.map((ele, idx) => (
+          <Link key={idx} id={ele} type={ele} />
+        ))}
       </LinkWrapper>
       <SearchBar />
-      <UserImg src={userIcon} />
+      <UserImg src={userIcon} onClick={moveHandler} />
     </Wrapper>
   );
 };
-export default Header;
 
 const Wrapper = styled.div`
   display: flex;
@@ -44,10 +48,17 @@ const LogoImg = styled.img`
   width: 280px;
   &: hover {
     cursor: pointer;
+    opacity: 0.5;
   }
 `;
 
 const UserImg = styled.img`
   width: 50px;
   height: 50px;
+  &: hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
 `;
+
+export default Header;

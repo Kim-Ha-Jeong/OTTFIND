@@ -1,32 +1,45 @@
 import React from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
-import get from "@ts/get";
+import { currentState } from "@ts/state";
+
+interface HighlightProps {
+  current: string;
+}
 
 const Link = (props: LinkType) => {
-  const changeTypeHandler = async () => {
-    const apiLocation = { pathname: "film", params: { type: props.id } };
-    const result = await get(apiLocation);
+  const [current, setCurrent] = useRecoilState(currentState);
 
-    if (result.status === 200) {
-      console.log(result.data);
-    }
+  const changeTypeHandler = async (e: React.MouseEvent<HTMLDivElement>) => {
+    const element = e.currentTarget as HTMLDivElement;
+    setCurrent(element.id);
   };
-  return <Wrapper onClick={changeTypeHandler}>{props.link}</Wrapper>;
-};
 
-export default Link;
+  return (
+    <Wrapper onClick={changeTypeHandler} id={props.id} current={current}>
+      {props.type}
+    </Wrapper>
+  );
+};
 
 type LinkType = {
   id: string;
-  link: string;
+  type: string;
 };
 
-const Wrapper = styled.p`
+const Wrapper = styled.div<HighlightProps>`
+  border-bottom: ${(props) =>
+    props.id === props.current ? "3px solid white" : "none"};
   font-size: 23px;
   font-weight: bold;
+  opacity: 1;
+  padding: 10px;
+
   &:hover {
     cursor: pointer;
     opacity: 0.5;
   }
 `;
+
+export default Link;
