@@ -45,4 +45,16 @@ public class FilmService {
     public List<Film> findFilmByGenre(String genreName){
         return filmRepository.findByGenre(genreName);
     }
+
+    public List<Film> findFilmByType(String type){
+        return filmRepository.findByType(type);
+    }
+
+    public List<Film> findFilmByYear(Integer year){
+        return filmRepository.findByYear(year);
+    }
+
+    public List<Film> findFilmByCountry(String country){
+        return filmRepository.findByCountry(country);
+    }
 }

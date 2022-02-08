@@ -7,7 +7,8 @@ import java.util.Optional;
 
 public interface FilmInterface extends JpaRepository<Film> {
     List<Film> findByTitle(String title);
-    Optional<Film> findByYear(int year);
+    List<Film> findByYear(Integer year);
     List<Film> findByGenre(String genreName);
-    Optional<Film> findByCountry(String country);
+    List<Film> findByCountry(String country);
+    List<Film> findByType(String type);
 }

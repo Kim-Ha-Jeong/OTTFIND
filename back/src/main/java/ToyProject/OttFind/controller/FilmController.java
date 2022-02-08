@@ -28,4 +28,19 @@ public class FilmController {
     public List<Film> findByGenre(@RequestParam String genre){
         return filmService.findFilmByGenre(genre);
     }
+
+    @RequestMapping(value = "/film", params = "type")
+    public List<Film> findByType(@RequestParam String type){
+        return filmService.findFilmByType(type);
+    }
+
+    @RequestMapping(value = "/film", params = "country")
+    public List<Film> findByCountry(@RequestParam String country){
+        return filmService.findFilmByCountry(country);
+    }
+
+    @RequestMapping(value = "/film", params = "year")
+    public List<Film> findByYear(@RequestParam Integer year){
+        return filmService.findFilmByYear(year);
+    }
 }
