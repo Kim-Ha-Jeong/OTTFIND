@@ -20,8 +20,6 @@ const WholeFilm = () => {
     if (result.status === 200) {
       setFilms(result.data);
     }
-
-    console.log(films);
   };
 
   useEffect(() => {

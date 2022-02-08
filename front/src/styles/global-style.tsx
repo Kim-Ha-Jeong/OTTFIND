@@ -8,6 +8,14 @@ const globalStyles = createGlobalStyle`
         background-color: black;
         color : white;
     }
+
+    * {
+        -ms-overflow-style: none; 
+        scrollbar-width: none; 
+    }
+    *::-webkit-scrollbar {
+        display: none; 
+    }
 `;
 
 export default globalStyles;
