@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -9,21 +9,31 @@ import Link from "@components/header/Link";
 import SearchBar from "@components/header/SearchBar";
 
 const Header = () => {
+  const [current, setCurrent] = useState("전체");
   const navigate = useNavigate();
   const moveHome = () => {
     navigate("/");
+  };
+
+  const moveHandler = () => {
+    navigate("/user");
   };
 
   return (
     <Wrapper>
       <LogoImg src={logo} onClick={moveHome} />
       <LinkWrapper>
-        <Link id="" link="홈" />
-        <Link id="movie" link="영화" />
-        <Link id="drama" link="드라마" />
+        <Link id="전체" type="홈" current={current} setCurrent={setCurrent} />
+        <Link id="영화" type="영화" current={current} setCurrent={setCurrent} />
+        <Link
+          id="드라마"
+          type="드라마"
+          current={current}
+          setCurrent={setCurrent}
+        />
       </LinkWrapper>
       <SearchBar />
-      <UserImg src={userIcon} />
+      <UserImg src={userIcon} onClick={moveHandler} />
     </Wrapper>
   );
 };
@@ -44,10 +54,15 @@ const LogoImg = styled.img`
   width: 280px;
   &: hover {
     cursor: pointer;
+    opacity: 0.5;
   }
 `;
 
 const UserImg = styled.img`
   width: 50px;
   height: 50px;
+  &: hover {
+    cursor: pointer;
+    opacity: 0.5;
+  }
 `;
