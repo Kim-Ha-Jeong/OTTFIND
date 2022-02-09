@@ -19,4 +19,9 @@ const prevState = atom({
   default: { find: false, data: emptyArr },
 });
 
-export { currentState, searchState, prevState };
+const clickState = atom({
+  key: "click",
+  default: false,
+});
+
+export { currentState, searchState, prevState, clickState };

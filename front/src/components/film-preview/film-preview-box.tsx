@@ -7,7 +7,7 @@ import FilmPreview from "@components/film-preview/film-preview";
 import More from "@components/film-preview/more";
 import None from "@components/film-preview/none";
 
-const FilmPreviewBox = () => {
+const FilmPreviewBox = (props: any) => {
   const prev = useRecoilValue(prevState);
 
   return (

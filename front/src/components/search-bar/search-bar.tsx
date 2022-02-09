@@ -2,10 +2,11 @@ import React from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
-import { searchState } from "@ts/state";
+import { searchState, clickState } from "@ts/state";
 
 const SearchBar = () => {
   const [search, setSearch] = useRecoilState(searchState);
+  const [click, setClick] = useRecoilState(clickState);
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") setSearch({ enter: true, title: search.title });
@@ -15,7 +16,13 @@ const SearchBar = () => {
     setSearch({ enter: false, title: e.target.value });
   };
 
-  const onClickHandler = (e: React.MouseEvent<HTMLInputElement>) => {};
+  const onClickHandler = (e: React.MouseEvent<HTMLInputElement>) => {
+    setClick(true);
+  };
+
+  const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
+    setClick(false);
+  };
 
   return (
     <Wrapper>
@@ -24,6 +31,7 @@ const SearchBar = () => {
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
         onClick={onClickHandler}
+        onBlur={onBlurHandler}
       />
     </Wrapper>
   );
