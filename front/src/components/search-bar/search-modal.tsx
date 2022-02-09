@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import get from "@ts/get";
 import { searchState, prevState, clickState } from "@ts/state";
-import FilmPreview from "@src/components/film-preview/film-preview-box";
+import FilmPreviewBox from "@components/film-preview/film-preview-box";
 
 const SearchModal = () => {
   const search = useRecoilValue(searchState);
@@ -29,7 +29,9 @@ const SearchModal = () => {
     getFilms();
   }, [search]);
 
-  return <Wrapper>{click ? <FilmPreview /> : ""}</Wrapper>;
+  return (
+    <Wrapper>{click ? <FilmPreviewBox data="" page="Main" /> : ""}</Wrapper>
+  );
 };
 
 const Wrapper = styled.div`

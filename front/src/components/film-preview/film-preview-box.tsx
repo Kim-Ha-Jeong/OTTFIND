@@ -7,19 +7,28 @@ import FilmPreview from "@components/film-preview/film-preview";
 import More from "@components/film-preview/more";
 import None from "@components/film-preview/none";
 
-const FilmPreviewBox = (props: any) => {
+const FilmPreviewBox = (props: PropsType) => {
   const prev = useRecoilValue(prevState);
+  const data = props.data !== "" ? props.data : prev.find ? prev.data : "";
+  console.log(data);
 
   return (
     <Wrapper>
-      {prev.find ? (
-        prev.data.map((ele, idx) => <FilmPreview film={ele} key={idx} />)
+      {data !== "" ? (
+        data.map((ele: any, idx: number) => (
+          <FilmPreview film={ele} key={idx} />
+        ))
       ) : (
         <None />
       )}
       {prev.find ? <More /> : ""}
     </Wrapper>
   );
+};
+
+type PropsType = {
+  page: string;
+  data: any;
 };
 
 const Wrapper = styled.div`

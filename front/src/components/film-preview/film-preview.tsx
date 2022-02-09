@@ -1,10 +1,17 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const FilmPreview = (props: PropsType) => {
   const film = props.film;
+  const nav = useNavigate();
+
+  const onClickHandler = () => {
+    nav(`/film/title/${film.title}`);
+  };
+
   return (
-    <Wrapper>
+    <Wrapper onClick={onClickHandler}>
       <Img src={`/poster/${film.poster_url}`} />
       <Content>
         <Title>{film.title}</Title>
