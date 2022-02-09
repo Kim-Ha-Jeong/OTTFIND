@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { currentState } from "@ts/state";
 import get from "@ts/get";
-import Film from "@components/film-row/Film";
+import Film from "@components/film-row/film";
 
 const WholeFilm = () => {
   const current = useRecoilValue(currentState);
@@ -29,7 +29,7 @@ const WholeFilm = () => {
   return (
     <Wrapper>
       {films.map((ele, idx) => (
-        <Film src={ele.poster_url} key={idx} />
+        <Film src={ele.poster_url} key={idx} id={ele.id} />
       ))}
     </Wrapper>
   );

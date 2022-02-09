@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
@@ -10,9 +11,11 @@ interface HighlightProps {
 
 const Link = (props: LinkType) => {
   const [current, setCurrent] = useRecoilState(currentState);
+  const nav = useNavigate();
 
   const changeTypeHandler = async (e: React.MouseEvent<HTMLDivElement>) => {
     const element = e.currentTarget as HTMLDivElement;
+    nav("/");
     setCurrent(element.id);
   };
 

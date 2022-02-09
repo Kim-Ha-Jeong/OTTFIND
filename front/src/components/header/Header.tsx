@@ -1,17 +1,22 @@
 import React from "react";
+import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import logo from "@images/logo.png";
 import userIcon from "@images/user-icon.png";
 
-import Link from "@components/header/Link";
-import SearchBar from "@components/header/SearchBar";
+import { currentState } from "@ts/state";
+import Link from "@components/header/link";
+import SearchBar from "@components/search-bar/search-bar";
+import SearchModal from "@components/search-bar/search-modal";
 
 const Header = () => {
   const linkArr = ["홈", "영화", "드라마"];
+  const setCurrent = useSetRecoilState(currentState);
   const navigate = useNavigate();
   const moveHome = () => {
+    setCurrent("홈");
     navigate("/");
   };
 
@@ -29,6 +34,7 @@ const Header = () => {
       </LinkWrapper>
       <SearchBar />
       <UserImg src={userIcon} onClick={moveHandler} />
+      <SearchModal />
     </Wrapper>
   );
 };
@@ -38,6 +44,7 @@ const Wrapper = styled.div`
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
+  flex-wrap: wrap;
 `;
 
 const LinkWrapper = styled(Wrapper)`
