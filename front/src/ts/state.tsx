@@ -13,9 +13,10 @@ const searchState = atom({
   },
 });
 
+const emptyArr: any[] = [];
 const prevState = atom({
   key: "prev",
-  default: { find: false, data: [] },
+  default: { find: false, data: emptyArr },
 });
 
 export { currentState, searchState, prevState };

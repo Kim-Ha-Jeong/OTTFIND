@@ -4,13 +4,14 @@ import styled from "styled-components";
 
 import get from "@ts/get";
 import { searchState, prevState } from "@ts/state";
-import FilmPreview from "@components/film-preview/film-preview";
+import FilmPreview from "@src/components/film-preview/film-preview-box";
 
 const SearchModal = () => {
   const search = useRecoilValue(searchState);
   const [prev, setPrev] = useRecoilState(prevState);
 
   const getFilms = async () => {
+    setPrev({ find: false, data: [] });
     const film = await get({
       pathname: "film",
       params: { title: search.title },
