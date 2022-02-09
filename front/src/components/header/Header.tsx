@@ -1,5 +1,5 @@
 import React from "react";
-import { useRecoilState } from "recoil";
+import { useSetRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
@@ -13,7 +13,7 @@ import SearchModal from "@components/search-bar/search-modal";
 
 const Header = () => {
   const linkArr = ["홈", "영화", "드라마"];
-  const [current, setCurrent] = useRecoilState(currentState);
+  const setCurrent = useSetRecoilState(currentState);
   const navigate = useNavigate();
   const moveHome = () => {
     setCurrent("홈");

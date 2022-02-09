@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
@@ -7,6 +7,7 @@ import { searchState, clickState } from "@ts/state";
 const SearchBar = () => {
   const [search, setSearch] = useRecoilState(searchState);
   const [click, setClick] = useRecoilState(clickState);
+  const inputRef = useRef<HTMLDivElement>(null);
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter") setSearch({ enter: true, title: search.title });
@@ -16,22 +17,37 @@ const SearchBar = () => {
     setSearch({ enter: false, title: e.target.value });
   };
 
-  const onClickHandler = (e: React.MouseEvent<HTMLInputElement>) => {
-    setClick(true);
+  const onClickHandler = (e: any) => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-expressions
+    click
+      ? (setClick(false), setSearch({ enter: false, title: "" }))
+      : setClick(true);
   };
 
-  const onBlurHandler = (e: React.FocusEvent<HTMLInputElement>) => {
-    setClick(false);
+  const outsideClickHandler = (e: any) => {
+    if (
+      inputRef.current === null ||
+      (inputRef.current && !inputRef.current.contains(e.target))
+    ) {
+      setClick(false);
+      setSearch({ enter: false, title: "" });
+    }
   };
+
+  useEffect(() => {
+    document.addEventListener("click", outsideClickHandler);
+    return () => {
+      document.removeEventListener("click", outsideClickHandler);
+    };
+  });
 
   return (
-    <Wrapper>
+    <Wrapper ref={inputRef}>
       <Input
         placeholder="영화나 드라마 제목을 입력하세요"
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
         onClick={onClickHandler}
-        onBlur={onBlurHandler}
       />
     </Wrapper>
   );

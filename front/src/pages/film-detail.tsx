@@ -6,9 +6,8 @@ import styled from "styled-components";
 import get from "@ts/get";
 import { currentState } from "@ts/state";
 import Header from "@components/header/header";
-import FilmPreviewBox from "@components/film-preview/film-preview-box";
 
-const SearchResult = () => {
+const FilmDetail = () => {
   const param = useParams();
   const [data, setData] = useState([]);
   const setCurrent = useSetRecoilState(currentState);
@@ -16,18 +15,18 @@ const SearchResult = () => {
   const getFilms = async () => {
     const film = await get({
       pathname: "film",
-      params: { title: param.title },
+      params: { id: param.id },
     });
 
     if (film.status === 200) {
-      if (film.data.length > 0) {
-        setData(film.data);
+      if (film.data.length === 1) {
+        setData(film.data[0]);
       }
     }
   };
 
   useEffect(() => {
-    setCurrent("결과");
+    setCurrent("상세");
   }, []);
 
   useEffect(() => {
@@ -37,7 +36,7 @@ const SearchResult = () => {
   return (
     <Wrapper>
       <Header />
-      <FilmPreviewBox title="" page="search" data={data} />
+      {param.id}
     </Wrapper>
   );
 };
@@ -46,4 +45,4 @@ const Wrapper = styled.div`
   margin: 1%;
 `;
 
-export default SearchResult;
+export default FilmDetail;

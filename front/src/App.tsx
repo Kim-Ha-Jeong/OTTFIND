@@ -5,6 +5,7 @@ import GlobalStyles from "@styles/global-style";
 
 import Main from "@pages/main";
 import SearchResult from "@pages/search-result";
+import FilmDetail from "@pages/film-detail";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/film/title/:title" element={<SearchResult />} />
+          <Route path="/film/:id" element={<FilmDetail />} />
         </Routes>
       </Router>
     </RecoilRoot>

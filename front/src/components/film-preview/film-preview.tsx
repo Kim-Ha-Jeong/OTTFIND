@@ -1,13 +1,18 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import { useSetRecoilState } from "recoil";
 import styled from "styled-components";
+
+import { searchState } from "@src/ts/state";
 
 const FilmPreview = (props: PropsType) => {
   const film = props.film;
   const nav = useNavigate();
+  const setSearch = useSetRecoilState(searchState);
 
-  const onClickHandler = () => {
-    nav(`/film/title/${film.title}`);
+  const onClickHandler = (e: any) => {
+    setSearch({ enter: false, title: "" });
+    nav(`/film/${film.id}`);
   };
 
   return (

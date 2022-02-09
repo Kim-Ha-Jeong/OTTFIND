@@ -29,7 +29,7 @@ const WholeFilm = () => {
   return (
     <Wrapper>
       {films.map((ele, idx) => (
-        <Film src={ele.poster_url} key={idx} />
+        <Film src={ele.poster_url} key={idx} id={ele.id} />
       ))}
     </Wrapper>
   );

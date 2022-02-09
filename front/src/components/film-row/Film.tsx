@@ -1,9 +1,16 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 const Film = (props: propsType) => {
+  const nav = useNavigate();
+  const onClickHandler = (e: any) => {
+    const ele = e.currentTarget as HTMLImageElement;
+    nav(`/film/${ele.id}`);
+  };
+
   return (
-    <Wrapper>
+    <Wrapper id={props.id} onClick={onClickHandler}>
       <Poster src={`/poster/${props.src}`} />
     </Wrapper>
   );
@@ -11,6 +18,7 @@ const Film = (props: propsType) => {
 
 type propsType = {
   src: string;
+  id: string | undefined;
 };
 
 const Wrapper = styled.div`
