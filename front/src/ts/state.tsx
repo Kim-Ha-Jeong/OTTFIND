@@ -5,4 +5,17 @@ const currentState = atom({
   default: "홈",
 });
 
-export { currentState };
+const searchState = atom({
+  key: "search",
+  default: {
+    enter: false,
+    title: "",
+  },
+});
+
+const prevState = atom({
+  key: "prev",
+  default: { find: false, data: [] },
+});
+
+export { currentState, searchState, prevState };

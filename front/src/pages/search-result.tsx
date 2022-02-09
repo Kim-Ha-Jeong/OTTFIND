@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-import Header from "@components/header/Header";
+import Header from "@src/components/header/header";
 
 const SearchResult = () => {
   return (

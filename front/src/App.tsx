@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import GlobalStyles from "@styles/global-style";
-import Main from "@pages/Main";
+import Main from "@pages/main";
 
 const App = () => {
   return (

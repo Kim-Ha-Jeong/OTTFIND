@@ -1,26 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
+import { useRecoilState } from "recoil";
 import styled from "styled-components";
 
-import get from "@ts/get";
+import { searchState } from "@ts/state";
 
 const SearchBar = () => {
-  const [title, setTitle] = useState("");
+  const [search, setSearch] = useRecoilState(searchState);
 
   const onKeyPressHandler = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === "Enter") search();
+    if (e.key === "Enter") setSearch({ enter: true, title: search.title });
   };
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(e.target.value);
+    setSearch({ enter: false, title: e.target.value });
   };
 
-  const search = async () => {
-    const film = await get({ pathname: "film", params: { title: title } });
-
-    if (film.status === 200) {
-      //console.log(film.data);
-    }
-  };
+  const onClickHandler = (e: React.MouseEvent<HTMLInputElement>) => {};
 
   return (
     <Wrapper>
@@ -28,6 +23,7 @@ const SearchBar = () => {
         placeholder="영화나 드라마 제목을 입력하세요"
         onChange={onChangeHandler}
         onKeyPress={onKeyPressHandler}
+        onClick={onClickHandler}
       />
     </Wrapper>
   );
@@ -36,13 +32,14 @@ const SearchBar = () => {
 const Wrapper = styled.div``;
 
 const Input = styled.input`
-  border: none;
-  background-color: white;
+  background-color: black;
+  border: 1px solid rgba(255, 255, 255, 0.2);
   height: 40px;
   width: 650px;
   padding-left: 10px;
   font-size: 15px;
-  color: black;
+  color: white;
+  font-weight: bold;
 `;
 
 export default SearchBar;

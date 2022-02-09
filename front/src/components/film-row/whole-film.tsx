@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import { currentState } from "@ts/state";
 import get from "@ts/get";
-import Film from "@components/film-row/Film";
+import Film from "@components/film-row/film";
 
 const WholeFilm = () => {
   const current = useRecoilValue(currentState);
