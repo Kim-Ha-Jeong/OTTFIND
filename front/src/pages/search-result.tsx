@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import get from "@ts/get";
 import { currentState } from "@ts/state";
-import Header from "@components/header/header";
+import Header from "@src/components/header/header";
 import FilmPreviewBox from "@components/film-preview/film-preview-box";
 
 const SearchResult = () => {

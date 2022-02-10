@@ -42,6 +42,7 @@ type FilmType = {
   title: string;
   type: string;
   year: number;
+  content: string;
 };
 
 type PropsType = {

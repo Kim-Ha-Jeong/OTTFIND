@@ -6,10 +6,13 @@ import styled from "styled-components";
 import get from "@ts/get";
 import { currentState } from "@ts/state";
 import Header from "@components/header/header";
+import FilmDetailBox from "@components/film-detail/film-detail-box";
 
-const FilmDetail = () => {
+const FilmDetailPage = () => {
   const param = useParams();
-  const [data, setData] = useState([]);
+  const [data, setData] = useState<any>([]);
+  const [ott, setOtt] = useState<any>([]);
+  const [review, setReview] = useState<any>([]);
   const setCurrent = useSetRecoilState(currentState);
 
   const getFilms = async () => {
@@ -18,10 +21,20 @@ const FilmDetail = () => {
       params: { id: param.id },
     });
 
+    const ott = await get({
+      pathname: "ott",
+      params: { film_id: param.id },
+    });
+
+    const review = await get({
+      pathname: "review",
+      params: { film_id: param.id },
+    });
+
     if (film.status === 200) {
-      if (film.data.length === 1) {
-        setData(film.data[0]);
-      }
+      setData(film.data);
+      setOtt(ott.data);
+      setReview(review.data);
     }
   };
 
@@ -36,7 +49,9 @@ const FilmDetail = () => {
   return (
     <Wrapper>
       <Header />
-      {param.id}
+      {data && ott && review && (
+        <FilmDetailBox data={data} ott={ott} review={review} />
+      )}
     </Wrapper>
   );
 };
@@ -45,4 +60,4 @@ const Wrapper = styled.div`
   margin: 1%;
 `;
 
-export default FilmDetail;
+export default FilmDetailPage;
