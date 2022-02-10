@@ -72,4 +72,12 @@ public class FilmRepository implements FilmInterface {
     public List<Film> findAll() {
         return em.createQuery("select f from film f", Film.class).getResultList();
     }
+
+    @Override
+    public List<Film> findByOtt(String ott) {
+        List<Film> result = em.createQuery("select f from film f, film_in_ott fo, ott o where f.id = fo.film and fo.ott=o.id and o.name=:name", Film.class)
+                .setParameter("name", ott)
+                .getResultList();
+        return result;
+    }
 }

@@ -47,4 +47,9 @@ public class FilmController {
     public List<Film> findByYear(@RequestParam Integer year){
         return filmService.findFilmByYear(year);
     }
+
+    @RequestMapping(value = "/film", params = "ott")
+    public List<Film> findByOtt(@RequestParam String ott){
+        return filmService.findFilmByOtt(ott);
+    }
 }

@@ -60,4 +60,6 @@ public class FilmService {
     public List<Film> findFilmByCountry(String country){
         return filmRepository.findByCountry(country);
     }
+
+    public List<Film> findFilmByOtt(String ott) { return filmRepository.findByOtt(ott);}
 }
