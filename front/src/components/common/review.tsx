@@ -16,7 +16,6 @@ type PropsType = {
 };
 
 const Wrapper = styled.div`
-  margin-right: 30px;
   padding: 10px 10px 0 10px;
   background-color: #222222;
 `;

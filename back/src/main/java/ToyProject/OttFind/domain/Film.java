@@ -39,13 +39,16 @@ public class Film {
     @Column(nullable = false, length = 45)
     private String country;
 
+    @Column(nullable = false, length = 1000)
+    private String content;
+
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinColumn(name = "genre_id", referencedColumnName = "id")
     private Genre genre;
 
 
     @Builder
-    private Film(Integer id, String title, String type, String poster_url, Integer time, Integer season, String country, String director, Genre genre, Integer year){
+    private Film(Integer id, String title, String type, String poster_url, Integer time, Integer season, String country, String director, Genre genre, Integer year, String content){
         this.id = id;
         this.time = time;
         this.title = title;
@@ -56,6 +59,7 @@ public class Film {
         this.director = director;
         this.genre = genre;
         this.year = year;
+        this.content = content;
     }
 
 }

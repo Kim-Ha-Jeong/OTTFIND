@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
 import Button from "@components/film-detail/button";
@@ -10,6 +11,7 @@ import heart from "@images/heart.png";
 import check from "@images/check.png";
 
 const FilmDetailBox = (props: DataType) => {
+  const nav = useNavigate();
   const btnArr = [
     { text: "봤어요", src: check },
     { text: "좋아요", src: heart },
@@ -19,6 +21,10 @@ const FilmDetailBox = (props: DataType) => {
   const film = props.data;
   const ottArr = props.ott;
   const reviewArr = props.review;
+
+  const onClickHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+    //nav("/");
+  };
 
   return (
     <Wrapper>
@@ -44,7 +50,10 @@ const FilmDetailBox = (props: DataType) => {
             <OttBtn name={ele.name} opt={ele.opt} key={idx} />
           ))}
         </OttWrapper>
-        <ReviewTitle>리뷰</ReviewTitle>
+        <ReviewTitleWrapper>
+          <ReviewTitle>리뷰</ReviewTitle>
+          <ReviewBtn onClick={onClickHandler}>리뷰 작성하기</ReviewBtn>
+        </ReviewTitleWrapper>
         {reviewArr.map((ele, idx) => (
           <Review content={ele.content} user={ele.user} key={idx} />
         ))}
@@ -122,6 +131,21 @@ const ReviewTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 20px;
+`;
+
+const ReviewTitleWrapper = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
+const ReviewBtn = styled.button`
+  background-color: #222222;
+  margin-bottom: 5px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: 1px solid black;
+  padding: 0 20px;
 `;
 
 const Desc = styled.p`
