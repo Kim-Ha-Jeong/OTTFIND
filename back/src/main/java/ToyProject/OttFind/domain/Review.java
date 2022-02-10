@@ -1,5 +1,6 @@
 package ToyProject.OttFind.domain;
 
+import ToyProject.OttFind.config.FilmShort;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +9,6 @@ import javax.persistence.*;
 
 @Entity(name="review")
 @NoArgsConstructor
-@Getter
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,6 +24,23 @@ public class Review {
     @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.REMOVE})
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User user;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public FilmShort getFilm(){
+        FilmShort filmShort = new FilmShort(film.getTitle(), film.getPoster_url());
+        return filmShort;
+    }
+
+    public String getUser() {
+        return user.getUsername();
+    }
+
+    public String getContent() {
+        return content;
+    }
 
     @Builder
     private Review(Integer id, String content, Film film, User user){

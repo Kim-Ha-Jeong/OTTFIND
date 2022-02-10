@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api")
@@ -18,6 +19,9 @@ public class FilmController {
     public List<Film> getAllFilms(){
         return filmService.getAllFilms();
     }
+
+    @RequestMapping(value = "/film", params = "id")
+    public Optional<Film> findById(@RequestParam Integer id) {return filmService.findFilmById(id);}
 
     @RequestMapping(value = "/film", params = "title")
     public List<Film> findByTitle(@RequestParam String title){
@@ -42,5 +46,10 @@ public class FilmController {
     @RequestMapping(value = "/film", params = "year")
     public List<Film> findByYear(@RequestParam Integer year){
         return filmService.findFilmByYear(year);
+    }
+
+    @RequestMapping(value = "/film", params = "ott")
+    public List<Film> findByOtt(@RequestParam String ott){
+        return filmService.findFilmByOtt(ott);
     }
 }

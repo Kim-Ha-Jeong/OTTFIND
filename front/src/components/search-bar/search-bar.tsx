@@ -35,7 +35,9 @@ const SearchBar = () => {
   };
 
   useEffect(() => {
-    document.addEventListener("click", outsideClickHandler);
+    if (click) {
+      document.addEventListener("click", outsideClickHandler);
+    }
     return () => {
       document.removeEventListener("click", outsideClickHandler);
     };

@@ -11,4 +11,5 @@ public interface FilmInterface extends JpaRepository<Film> {
     List<Film> findByGenre(String genreName);
     List<Film> findByCountry(String country);
     List<Film> findByType(String type);
+    List<Film> findByOtt(String ott);
 }

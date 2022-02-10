@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 
 @Transactional
 public class FilmService {
@@ -38,6 +39,8 @@ public class FilmService {
         return filmRepository.findAll();
     }
 
+    public Optional<Film> findFilmById(Integer id) { return filmRepository.findById(id);}
+
     public List<Film> findFilmByTitle(String title){
         return filmRepository.findByTitle(title);
     }
@@ -57,4 +60,6 @@ public class FilmService {
     public List<Film> findFilmByCountry(String country){
         return filmRepository.findByCountry(country);
     }
+
+    public List<Film> findFilmByOtt(String ott) { return filmRepository.findByOtt(ott);}
 }
